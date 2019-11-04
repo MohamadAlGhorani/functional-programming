@@ -1,6 +1,10 @@
 # functional-programming
 
-One Paragraph of project description goes here
+## Het concept
+
+## Features 
+
+## API reference
 
 ## Getting Started
 
