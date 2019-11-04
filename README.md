@@ -35,9 +35,12 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Deployment
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/9038e2a3-13d4-44de-aee9-7f3814e8265a/deploy-status)](https://app.netlify.com/sites/functioneel-programmeren/deploys)
 
 
 ## Credits
+
+Thanks to the museum of volkenkunde for sharing their data and hosting us at the museum. And thanks to my teachers and colleagues for their help and sharing their knowledge.
 
 ## Contributing
 
@@ -53,4 +56,4 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## License
 
-[MIT]() code
+Code is[MIT]()
