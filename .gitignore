@@ -1,8 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
-/cleaning-data/enquete.json
+node_modules
+cleaning-data/enquete.json
 
 # System Files
 .DS_Store
