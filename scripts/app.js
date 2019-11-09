@@ -50,31 +50,35 @@ function getGeoQueryForCategory(category) {
 
 
 function loopData(data) {
-    return data
-        .map(item => {
-            return {
-                category: `<${item.category.value}>`,
-                categoryLabel: item.categoryLabel.value,
-                countObj: item.choCount.value,
-            }
-        })
-        .reduce((newData, currentItem) => {
-            runQuery(eindpoint, getGeoQueryForCategory(currentItem.category))
-                .then(data => {
-                    currentItem.landen = data
-                        .map(item => {
-                            return {
-                                gebiedLabel: item.geoLabel.value,
-                                aantalObjInGebied: item.choCount.value
-                            }
-                        })
+    const mapDataVanCategorien = mapData(data)
+    return mapDataVanCategorien.reduce((newData, currentItem) => {
+        runQuery(eindpoint, getGeoQueryForCategory(currentItem.category))
+            .then(data => {
+                currentItem.landen = data
+                    .map(item => {
+                        return {
+                            gebiedLabel: item.geoLabel.value,
+                            aantalObjInGebied: item.choCount.value
+                        }
+                    })
 
-                    newData.push(currentItem)
-                })
+                newData.push(currentItem)
+            })
 
-            return newData
-        }, [])
+        return newData
+    }, [])
 }
+
+function mapData(data) {
+    return data.map(item => {
+        return {
+            category: `<${item.category.value}>`,
+            categoryLabel: item.categoryLabel.value,
+            countObj: item.choCount.value,
+        }
+    })
+}
+
 
 function runQuery(url, query) {
     return fetch(url + "?query=" + encodeURIComponent(query) + "&format=json")
