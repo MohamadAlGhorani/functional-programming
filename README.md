@@ -6,9 +6,54 @@
 
 ## API reference
 
+Om mijn concept tot leven te brengen heb ik de volgende data variabelen nodig: alle categorieën van de collectie 
+en het aantal objecten per collectie, per categorieën heb ik de meest ten voorkomende gebieden en he aantal objecten daarin. Daardoor moet ik een query schrijven die de categorieën ophaalt met het aantal objecten erin. En omdat er 19 hoofdcategorieën zijn heb ik dan per categorie een query moeten schrijven die de tien gebieden van de categorie kan ophalen. 
+
+query voor de hoofdcategorieën
+```
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX edm: <http://www.europeana.eu/schemas/edm/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+# tel aantallen per materiaal
+SELECT ?categoryLabel ?category (COUNT(?allChos) AS ?choCount) WHERE {
+  ?cho edm:isRelatedTo <https://hdl.handle.net/20.500.11840/termmaster2802> .
+  <https://hdl.handle.net/20.500.11840/termmaster2802> skos:narrower ?category .
+  ?category skos:prefLabel ?categoryLabel .
+  ?category skos:narrower* ?allChos .
+}
+  
+GROUP BY ?categoryLabel ?category
+ORDER BY DESC(?choCount)
+``` 
+query die de tien gebieden en het aantal objecten per gebied ophaalt van een van de categorieën :
+```
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        PREFIX dc: <http://purl.org/dc/elements/1.1/>
+        PREFIX dct: <http://purl.org/dc/terms/>
+        PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+        PREFIX edm: <http://www.europeana.eu/schemas/edm/>
+        PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+        # tel aantallen per materiaal
+        SELECT ?subcategorie ?geoLabel (COUNT(?cho) AS ?choCount) WHERE {
+        # haal van een term in de thesaurus de subcategorieen op
+        ${category} skos:narrower* ?subcategorie .
+        # haal de objecten van deze subcategorieen en het materiaal
+        ?cho edm:isRelatedTo ?subcategorie .
+        ?cho dct:spatial ?geo .
+        # haal het Label op van materiaal
+        ?geo skos:prefLabel ?geoLabel .
+        }
+        GROUP BY ?subcategorie ?geoLabel
+        ORDER BY DESC(?choCount)
+        LIMIT 10
+```
+
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine.
 
 ### Prerequisites
 
