@@ -6,8 +6,12 @@
 
 ## API reference
 
+I used SPARQL in this app to retrieve data from the museum's database. For more information about SPARQL [click here](https://nl.wikipedia.org/wiki/SPARQL)
+
 Om mijn concept tot leven te brengen heb ik de volgende data variabelen nodig: alle categorieën van de collectie 
 en het aantal objecten per collectie, per categorieën heb ik de meest ten voorkomende gebieden en he aantal objecten daarin. Daardoor moet ik een query schrijven die de categorieën ophaalt met het aantal objecten erin. En omdat er 19 hoofdcategorieën zijn heb ik dan per categorie een query moeten schrijven die de tien gebieden van de categorie kan ophalen. 
+
+Here below you can see the queries that i have wrote to filter in the data to get the objects.
 
 query voor de hoofdcategorieën
 ```
