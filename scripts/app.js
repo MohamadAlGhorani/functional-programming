@@ -11,7 +11,7 @@
  // arc generator
  const arc = d3.arc()
      .outerRadius(raduis - 10)
-     .innerRadius(0);
+     .innerRadius(raduis - 120);
 
  const color = d3.scaleOrdinal(d3.schemeDark2);
 
@@ -82,9 +82,17 @@ ORDER BY DESC(?choCount)`;
          .attr("d", arc)
          .style("fill", function (d) {
              return color(d.data.categoryLabel)
-         });
+         })
+         .transition()
+         .ease(d3.easeLinear)
+         .duration(2000)
+         .attrTween("d", pieTween);
+
      //appen the text (labels)
      g.append('text')
+         .transition()
+         .ease(d3.easeBack)
+         .duration(2000)
          .attr("transform", function (d) {
              const midAngle = d.endAngle < Math.PI ? d.startAngle / 2 + d.endAngle / 2 : d.startAngle / 2 + d.endAngle / 2 + Math.PI;
              return "translate(" + labelArc.centroid(d) + ")rotate(-90) rotate(" + (midAngle * 180 / Math.PI) + ")"
@@ -95,6 +103,28 @@ ORDER BY DESC(?choCount)`;
          .text(function (d) {
              return d.data.categoryLabel;
          });
+
+     // aantal objecten in het middle
+     g.append('text')
+         .attr("class", "aantalObjecten")
+         .attr('text-anchor', 'middle')
+         .attr('font-size', '28')
+         .attr("dy", ".35em")
+         .text(function (d) {
+             return d.data.countObj;
+         });
+ }
+
+ function pieTween(b) {
+     b.innerRadius = 0;
+     const i = d3.interpolate({
+         startAngle: 0,
+         endAngle: 0
+     }, b);
+     return function (t) {
+         return arc(i(t));
+     }
+
  }
 
  function getGeoQueryForCategory(category) {

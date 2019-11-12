@@ -2,10 +2,6 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-body {
-  background-color: red;
-}
-
 .h1 {
   font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
@@ -15,6 +11,17 @@ svg {
   margin: 0 auto;
   display: block;
   margin-top: 50px;
+}
+
+.aantalObjecten {
+  display: none;
+}
+
+.arc:hover {
+  opacity: 0.8;
+}
+.arc:hover .aantalObjecten {
+  display: block;
 }
 
 /*# sourceMappingURL=index.css.map */
