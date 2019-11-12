@@ -17,8 +17,8 @@
 
  // labelArc genraren om de label te centereren
  const labelArc = d3.arc()
-     .outerRadius(raduis - 50)
-     .innerRadius(raduis - 50);
+     .outerRadius(raduis - 0)
+     .innerRadius(raduis - 0);
 
  // pie generator
  const pie = d3.pie()
@@ -30,6 +30,7 @@
  const svg = d3.select("#dashboard").append("svg")
      .attr("width", width)
      .attr("height", height)
+     .attr("overflow", "visible")
      .append("g")
      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
@@ -82,16 +83,17 @@ ORDER BY DESC(?choCount)`;
          .style("fill", function (d) {
              return color(d.data.categoryLabel)
          });
-
      //appen the text (labels)
      g.append('text')
          .attr("transform", function (d) {
-             return "translate(" + labelArc.centroid(d) + ")"
+             const midAngle = d.endAngle < Math.PI ? d.startAngle / 2 + d.endAngle / 2 : d.startAngle / 2 + d.endAngle / 2 + Math.PI;
+             return "translate(" + labelArc.centroid(d) + ")rotate(-90) rotate(" + (midAngle * 180 / Math.PI) + ")"
          })
+         .attr('text-anchor', 'middle')
          .attr('font-size', '8')
          .attr("dy", ".35em")
          .text(function (d) {
-             return d.data.categoryLabel
+             return d.data.categoryLabel;
          });
  }
 
