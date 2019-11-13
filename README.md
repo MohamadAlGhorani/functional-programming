@@ -62,32 +62,13 @@ query die de continenten en het aantal objecten per gebied ophaalt van een van d
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine.
-
-### Prerequisites
-
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+* If you dont hav node js on your device download it first from [here](https://nodejs.org/en/).
+* Download the project.
+* Open the folder with your favorite code editor.
+* open the terminal and navigate to the project folder and run ```npm install```. 
+* Run in your terminal ``` npm start ```That wil keep your css file in the dist updated for later deploy.
+* Open the index.html with live review in your code editor if you dont have it you can always download the extintion.
+* Or open the index.html in your browser.
 
 
 ## Deployment
