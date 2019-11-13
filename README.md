@@ -1,6 +1,7 @@
 # functional-programming
 
-<img width="739" alt="Screenshot 2019-11-13 at 22 03 01" src="https://user-images.githubusercontent.com/45425087/68804163-6ee02880-0661-11ea-8ebb-0faf98479464.png">
+![Screenshot 2019-11-13 at 22 03 01](https://user-images.githubusercontent.com/45425087/68804355-d7c7a080-0661-11ea-8dbb-e96810ed0acd.jpg)
+
 
 ## Het concept
 
