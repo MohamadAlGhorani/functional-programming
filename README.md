@@ -9,7 +9,7 @@
 I used SPARQL in this app to retrieve data from the museum's database. For more information about SPARQL [click here](https://nl.wikipedia.org/wiki/SPARQL)
 
 Om mijn concept tot leven te brengen heb ik de volgende data variabelen nodig: alle categorieën van de collectie 
-en het aantal objecten per collectie, per categorieën heb ik de meest ten voorkomende gebieden en he aantal objecten daarin. Daardoor moet ik een query schrijven die de categorieën ophaalt met het aantal objecten erin. En omdat er 19 hoofdcategorieën zijn heb ik dan per categorie een query moeten schrijven die de tien gebieden van de categorie kan ophalen. 
+en het aantal objecten per collectie, per categorieën heb ik de continenten en he aantal objecten daarin. Daardoor moet ik een query schrijven die de categorieën ophaalt met het aantal objecten erin. En omdat er 19 hoofdcategorieën zijn heb ik dan per categorie een query moeten schrijven die de continenten van de categorie kan ophalen. 
 
 Hie onder kun je de queries bekijken die ik geschreven heb om de juiste data binnen te halen.
 
@@ -32,7 +32,7 @@ SELECT ?category ?categoryLabel (COUNT(?cho) AS ?choCount) WHERE {
 GROUP BY ?category ?categoryLabel
 ORDER BY DESC(?choCount)
 ``` 
-query die de tien gebieden en het aantal objecten per gebied ophaalt van een van de categorieën :
+query die de continenten en het aantal objecten per gebied ophaalt van een van de categorieën :
 ```
        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     PREFIX dc: <http://purl.org/dc/elements/1.1/>
