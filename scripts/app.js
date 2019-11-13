@@ -14,12 +14,7 @@ const arc = d3.arc()
     .outerRadius(raduis - 10)
     .innerRadius(raduis - 100);
 
-const color = d3.scaleOrdinal(d3.schemeDark2);
-
-// labelArc genraren om de label te centereren
-// const labelArc = d3.arc()
-//     .outerRadius(raduis - 0)
-//     .innerRadius(raduis - 0);
+const color = d3.scaleOrdinal(d3.schemePaired);
 
 // pie generator
 const pie = d3.pie()
@@ -69,7 +64,6 @@ runQuery(eindpoint, categorieQuery)
 function koppelData(data) {
     // parse the  data
     console.dir(data)
-
     data.forEach(function (d) {
         d.countObj = +d.countObj; // "23" => 23
         d.categoryLabel = d.categoryLabel; // "name" => "name"
@@ -94,19 +88,11 @@ function koppelData(data) {
 
     //appen the text (labels)
     g.append('text')
-        // .transition()
-        // .ease(d3.easeBack)
-        // .duration(2000)
-        // .attr("transform", function (d) {
-        //     const midAngle = d.endAngle < Math.PI ? d.startAngle / 2 + d.endAngle / 2 : d.startAngle / 2 + d.endAngle / 2 + Math.PI;
-        //     // rotate source http://bl.ocks.org/vigorousnorth/7331bb51d4f0c2ae0314
-        //     return "translate(" + labelArc.centroid(d) + ")rotate(-90) rotate(" + (midAngle * 180 / Math.PI) + ")"
-        // })
         .attr('transform', 'translate(0, 30)')
         .attr('class', 'label')
         .attr('text-anchor', 'middle')
         .attr('font-size', '10')
-        //.attr("dy", ".35em")
+        .attr("dy", ".35em")
         .text(function (d) {
             return d.data.categoryLabel;
         });
