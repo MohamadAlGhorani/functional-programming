@@ -2,6 +2,8 @@
 
 ## Het concept
 
+Ik ga een overziecht maken van de data ik wil de alle categorieën in een piechart laten zien en als je op de piechart hovert krijg je dan de naam van de categorie en hoeveel objecten erin die aan een locatie toegewezen zijn. wat ik nog ga doen is dat als je op een van de categorieën klikt krijg je dan een andere chart te zien met de continenten en aantal objecten per continent van de gekozen categorie. Ik heb deze concept gekozen omdat ik het leuk vindt om Rik te helpen en zijn werk makkelijker maken door een overzicht aan hem te geven van alle objecten die de musea hebben en waar deze objecten vandaan komen zodat hij makkelijker een tentoonstelling kan maken.
+
 ## Features 
 
 ## API reference
