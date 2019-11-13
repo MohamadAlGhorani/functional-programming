@@ -11,6 +11,9 @@ Ik ga een overziecht maken van de data ik wil de alle categorieën in een piecha
 * animatie
 * informatie geven on hover
 
+## Functional programming pattren
+[click here](https://github.com/MohamadAlGhorani/functional-programming/wiki/Data-opschonen) 
+
 ## API reference
 
 I used SPARQL in this app to retrieve data from the museum's database. For more information about SPARQL [click here](https://nl.wikipedia.org/wiki/SPARQL)
