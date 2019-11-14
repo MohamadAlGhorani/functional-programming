@@ -57,7 +57,41 @@ runQuery(eindpoint, categorieQuery)
     .then(loopData)
     .then(prettyData => {
         makePieChart(prettyData)
+        makeBarChart(prettyData)
     })
+
+function makeBarChart(data) {
+    console.log(data)
+    // define svg for barchart
+    const svg2 = d3.select("#dashboard").append("svg")
+        .attr("width", "100%")
+        .attr('height', "500 ")
+        .append('g')
+        .attr('class', 'bar-chart')
+        .attr('transform', 'translate(' + width / 2 + ', ' + height / 2 + ')');
+    const Yscale = d3.scaleLinear()
+        .nice()
+        .domain([0, d3.max(data[0].continenten, d => d.aantalObjInGebied)])
+        .range([0, height])
+    d3.select('.bar-chart').selectAll('.bar')
+        .data(data[0].continenten)
+        .enter()
+        .append('rect')
+        .style('fill', 'black')
+        .attr('width', "35 ")
+        .attr('y', (d) => height - 3 * Yscale(d.aantalObjInGebied))
+        .attr('x', function (d, i) {
+            console.log(d, i);
+            return i * 50
+        })
+        .attr("height", d => Yscale(d))
+        .attr('class', 'bar')
+        .style('height', function (d) {
+            //console.log(d)
+            const barHeight = d.aantalObjInGebied / 100
+            return barHeight + 'px'
+        })
+}
 
 function makePieChart(data) {
     // parse the  data
@@ -161,7 +195,7 @@ function loopData(data) {
                         .map(item => {
                             return {
                                 gebiedLabel: item.continentLabel.value,
-                                aantalObjInGebied: item.choCount.value
+                                aantalObjInGebied: Number(item.choCount.value)
                             }
                         })
                 })
