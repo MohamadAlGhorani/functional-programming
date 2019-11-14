@@ -87,7 +87,6 @@ function makeBarChart(data) {
         .attr("height", d => Yscale(d))
         .attr('class', 'bar')
         .style('height', function (d) {
-            //console.log(d)
             const barHeight = d.aantalObjInGebied / 100
             return barHeight + 'px'
         })
