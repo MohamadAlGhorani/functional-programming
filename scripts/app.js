@@ -23,13 +23,15 @@ const pie = d3.pie()
         return d.countObj
     });
 
-// define svg
+// define svg for piechart
 const svg = d3.select("#dashboard").append("svg")
     .attr("width", width)
     .attr("height", height)
+    .attr("class", "pie-chart")
     .attr("overflow", "visible")
     .append("g")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
 
 const eindpoint = "https://api.data.netwerkdigitaalerfgoed.nl/datasets/ivo/NMVW/services/NMVW-22/sparql";
 const categorieLength = 19
@@ -52,18 +54,14 @@ GROUP BY ?category ?categoryLabel
 ORDER BY DESC(?choCount)`;
 
 runQuery(eindpoint, categorieQuery)
-    .then(data => {
-        const prettyData = loopData(data)
-        return prettyData
-    })
-    .then(data => {
-        koppelData(data)
+    .then(loopData)
+    .then(prettyData => {
+        makePieChart(prettyData)
     })
 
-
-function koppelData(data) {
+function makePieChart(data) {
     // parse the  data
-    console.dir(data)
+    //console.dir(data)
     data.forEach(function (d) {
         d.countObj = +d.countObj; // "23" => 23
         d.categoryLabel = d.categoryLabel; // "name" => "name"
@@ -146,32 +144,32 @@ function getGeoQueryForCategory(category) {
     ORDER BY DESC(?choCount)`;
 }
 
-
 function loopData(data) {
-    const mapDataVanCategorien = mapData(data)
-    return mapDataVanCategorien.reduce((newData, currentItem) => {
-        runQuery(eindpoint, getGeoQueryForCategory(currentItem.category))
-            .then(data => {
-                currentItem.continenten = data
-                    .map(item => {
-                        return {
-                            gebiedLabel: item.continentLabel.value,
-                            aantalObjInGebied: item.choCount.value
-                        }
-                    })
-            })
-        return mapDataVanCategorien
-    }, [])
-}
+    return data
+        .map(item => {
+            return {
+                category: `<${item.category.value}>`,
+                categoryLabel: item.categoryLabel.value,
+                countObj: item.choCount.value,
+            }
+        })
+        .reduce(async (newData, currentItem) => {
+            const dataToReturn = await newData
+            const continentenVoorCurrentItem = await runQuery(eindpoint, getGeoQueryForCategory(currentItem.category))
+                .then(data => {
+                    return data
+                        .map(item => {
+                            return {
+                                gebiedLabel: item.continentLabel.value,
+                                aantalObjInGebied: item.choCount.value
+                            }
+                        })
+                })
 
-function mapData(data) {
-    return data.map(item => {
-        return {
-            category: `<${item.category.value}>`,
-            categoryLabel: item.categoryLabel.value,
-            countObj: item.choCount.value,
-        }
-    })
+            currentItem.continenten = continentenVoorCurrentItem
+            dataToReturn.push(currentItem)
+            return dataToReturn
+        }, [])
 }
 
 
