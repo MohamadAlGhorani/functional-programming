@@ -87,7 +87,7 @@ I used Netlify te deploy my project more information about Netlify [click hier](
 
 ## Credits
 
-Thanks to the museum of volkenkunde for sharing their data and hosting us at the museum. And thanks to my teachers and colleagues for their help and sharing their knowledge and thanx to Karthik Thota for his [tutorial](https://www.youtube.com/watch?v=kK5kKA-0PUQ) .
+Thanks to the museum of volkenkunde for sharing their data and hosting us at the museum. And thanks to my teachers and colleagues for their help and sharing their knowledge and thanx to Karthik Thota for the [tutorial](https://www.youtube.com/watch?v=kK5kKA-0PUQ) .
  
 
 ## Authors
