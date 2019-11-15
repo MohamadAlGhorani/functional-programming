@@ -1,3 +1,5 @@
+////////////////////////setup ////////////////////////
+//from https://www.youtube.com/watch?v=kK5kKA-0PUQ
 //margin, width and height and raduis for teh circle
 const margin = {
         top: 20,
@@ -31,6 +33,7 @@ const svg = d3.select("#dashboard").append("svg")
     .attr("overflow", "visible")
     .append("g")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+///////////////////////////end setup ////////////////////////////////////
 
 
 const eindpoint = "https://api.data.netwerkdigitaalerfgoed.nl/datasets/ivo/NMVW/services/NMVW-22/sparql";
@@ -107,6 +110,7 @@ function makePieChart(data) {
 }
 
 // functie die zorgt dat alles op 0 staat voor dat de data binnen komt zodat de animatie werkt van de pie cahrt
+//from https://www.youtube.com/watch?v=kK5kKA-0PUQ
 function pieTween(b) {
     b.innerRadius = 0;
     const i = d3.interpolate({
